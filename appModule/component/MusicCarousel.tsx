@@ -8,8 +8,9 @@ import Animated, {
 import AlbumCard from './AlbumCard';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import { getResponsiveDimensions } from './utils/responsive';
-import { styles } from './styles';
+
 import { getAlbumStyle } from './utils/animations';
+import { styles } from '../styles/carouselStyles';
 
 interface Album {
   id: string;
