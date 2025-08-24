@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Button, StyleSheet, Text } from 'react-native';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { OverlayProvider } from '@gluestack-ui/overlay';
@@ -8,7 +8,9 @@ import TodoListScreen from './appModule/screens/TodoListScreen';
 import '@/global.css';
 import { musicSampleAlbums } from './appModule/constants/MusicSampleData';
 import { styles } from './appModule/styles/mainComponentStyle';
-import { ArrowLeftIcon, Icon, Pressable } from './components/ui';
+import { Icon, Pressable } from './components/ui';
+import { ArrowLeft } from 'lucide-react-native';
+import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
 
 export default function App() {
   const [selectedAssignment, setSelectedAssignment] = useState<
@@ -20,9 +22,12 @@ export default function App() {
       <OverlayProvider>
         <GluestackUIProvider mode="light">
           <View style={styles.container}>
-            <Pressable style={{ flex: 0.1, paddingLeft: 20, flexDirection:'row', }} onPress={() => setSelectedAssignment(null)}>
-              <Icon as={ArrowLeftIcon} size='xl' />
-              <Text style={{marginLeft: 8}}>Back</Text>
+            <Pressable
+              style={{  paddingLeft: 20, flexDirection: 'row' }}
+              onPress={() => setSelectedAssignment(null)}
+            >
+              <Icon as={ArrowLeft} size={isWeb ? 'lg' : 'xl'} />
+              <Text style={{ marginLeft: 8 }}>Back</Text>
             </Pressable>
             {selectedAssignment === null && (
               <View style={styles.buttonContainer}>
@@ -47,5 +52,3 @@ export default function App() {
     </ColorModeProvider>
   );
 }
-
-
